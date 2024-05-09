@@ -7,12 +7,15 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        sedan:"'Sedan SC',serif"
+        ubuntu:"'Ubuntu Sans',sans-serif"
       }
     },
   },
   plugins: [
     require('daisyui'),
   ],
+  daisyui: {
+    themes: ["lemonade", "dim"],
+  },
 }
 

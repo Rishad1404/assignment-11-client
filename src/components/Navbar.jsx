@@ -1,48 +1,103 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink, Navigate } from 'react-router-dom'
 import logo from '/logo.png'
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../provider/AuthProvider';
+import { CgProfile } from "react-icons/cg";
+import { Tooltip } from 'react-tooltip';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const [theme, setTheme] = useState('retro')
+
+    const handleTheme = e => {
+        if (e.target.checked) {
+            setTheme('retro')
+        }
+        else {
+            setTheme('dim')
+        }
+    }
+    useEffect(() => {
+        localStorage.setItem('theme', theme)
+        const localTheme = localStorage.getItem('theme')
+        document.querySelector('html').setAttribute('data-theme', localTheme)
+    }, [theme])
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                toast.success('Logged Out');
+                Navigate(location.state = '/login');
+            })
+            .catch(() => {
+                toast.error("Logout failed");
+            });
+    }
+
+    const navLinks = (
+        <>
+            <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border-b-2 rounded-none border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/'>Assignments</NavLink></li>
+            {
+                !user &&
+                <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border-b-2 rounded-none border-[#0097B2] font-ubuntu text-xl font-bold' : 'text-xl font-ubuntu font-bold'} to='/login'>Login</NavLink></li>              
+            }
+            {
+                !user && <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border-b-2 rounded-none border-[#0097B2] font-ubuntu text-xl font-bold' : 'text-xl font-ubuntu font-bold'} to='/register'>Register</NavLink></li>
+            }
+            {
+                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border-b-2 rounded-none border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/addItems'>Create Assignments</NavLink></li> : null
+            }
+            {
+                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border-b-2 rounded-none border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/myItems'>Pending Assignments</NavLink></li> : null
+            }
+        </>
+    )
     return (
         <div className=''>
             <div className="navbar bg-base-100 container mx-auto">
                 <div className="flex-1">
                     <Link><img className='w-20 lg:w-44' src={logo} alt="" /></Link>
                 </div>
-                <div className="flex-none">
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                            <div className="indicator">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                <span className="badge badge-sm indicator-item">8</span>
-                            </div>
-                        </div>
-                        <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
-                            <div className="card-body">
-                                <span className="font-bold text-lg">8 Items</span>
-                                <span className="text-info">Subtotal: $999</span>
-                                <div className="card-actions">
-                                    <button className="btn btn-primary btn-block">View cart</button>
-                                </div>
-                            </div>
-                        </div>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1">
+                        {navLinks}
+                    </ul>
+                </div>
+                <div className="flex-none ml-5 ">
+                    
+                    <div className='m'>
+                        <label className="cursor-pointer grid place-items-center">
+                            <input onChange={handleTheme} type="checkbox" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
+                            <svg className="col-start-1 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
+                            <svg className="col-start-2 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </label>
                     </div>
-                    <div className="dropdown dropdown-end">
+                    {
+                        user && <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            {user && user.photoURL ? (
+                                    <img type="button" className="w-full h-full object-cover" src={user.photoURL} alt="Profile" />
+                                ) : (
+                                    <CgProfile className="lg:w-full lg:h-full object-cover" />
+                                )}
+                                {user && user.displayName && (
+                                    <Tooltip anchorSelect="#my-anchor-element-id" place="top" content={user.displayName} />
+                                )}
                             </div>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            {navLinks}
+                            {
+                                <li><button onClick={handleLogout} className="text-xl font-bold">Logout</button></li> 
+                            }
+
                         </ul>
+                        <Toaster position="top-right"
+                                reverseOrder={false} />
                     </div>
+                    }
                 </div>
             </div>
         </div>
