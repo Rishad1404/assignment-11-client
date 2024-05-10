@@ -1,7 +1,5 @@
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
-
 import Navbar from "../components/Navbar";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
