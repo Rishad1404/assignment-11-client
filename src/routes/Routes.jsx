@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import CreateAssignments from "../pages/CreateAssignments";
 import Assignments from "../pages/Assignments";
 import UpdateAssignments from "../pages/UpdateAssignments";
+import AssignmentDetails from "../pages/AssignmentDetails";
 
 const router=createBrowserRouter([
     {
@@ -35,6 +36,11 @@ const router=createBrowserRouter([
             {
                 path:'/updateAssignment/:id',
                 element:<UpdateAssignments></UpdateAssignments>
+            },
+            {
+                path: '/assignments/:id',
+                element:<AssignmentDetails></AssignmentDetails>,
+                loader:()=>fetch(`${import.meta.env.VITE_API_URL}/assignments`)
             }
         ]
     },

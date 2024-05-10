@@ -100,7 +100,7 @@ const Assignments = () => {
                                         </button>
                                     </Link>
                                     <button onClick={() => handleDelete(item._id)} type="button" className=" p-3 font-semibold tracking-wide rounded-md dark:bg-[#0097B2] dark:text-gray-50 flex items-center gap-2 justify-center"><MdDeleteOutline /> Delete</button>
-                                    <Link><button type="button" className=" p-3 font-semibold tracking-wide rounded-md dark:bg-[#0097B2] dark:text-gray-50 flex items-center gap-2 justify-center">View Assignment</button></Link>
+                                    <Link to={`/assignments/${item._id}`}><button type="button" className=" p-3 font-semibold tracking-wide rounded-md dark:bg-[#0097B2] dark:text-gray-50 flex items-center gap-2 justify-center">View Assignment</button></Link>
                                 </div>
                             </div>
                         </div>
