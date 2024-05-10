@@ -3,6 +3,8 @@ import Main from "../layouts/Main";
 import Login from "../pages/Login";
 import Home from "../components/Home/Home";
 import Register from "../pages/Register";
+import CreateAssignments from "../pages/CreateAssignments";
+import Assignments from "../pages/Assignments";
 
 const router=createBrowserRouter([
     {
@@ -20,7 +22,14 @@ const router=createBrowserRouter([
             {
                 path:'/register',
                 element:<Register></Register>
-
+            },
+            {
+                path:'/createAssignments',
+                element:<CreateAssignments></CreateAssignments>
+            },
+            {
+                path:'/assignments',
+                element:<Assignments></Assignments>
             }
         ]
     },

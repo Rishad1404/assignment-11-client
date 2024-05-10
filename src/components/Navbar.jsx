@@ -47,7 +47,7 @@ const Navbar = () => {
                 !user && <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-lg border-[#0097B2] font-ubuntu text-xl font-bold' : 'text-xl font-ubuntu font-bold'} to='/register'>Register</NavLink></li>
             }
             {
-                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-log border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/addItems'>Create Assignments</NavLink></li> : null
+                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-log border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/createAssignments'>Create Assignments</NavLink></li> : null
             }
             {
                 user ? <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-log border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/myItems'>Pending Assignments</NavLink></li> : null
@@ -67,7 +67,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex-none ml-5 ">
                     
-                    <div className='m'>
+                    <div className='mr-5'>
                         <label className="cursor-pointer grid place-items-center">
                             <input onChange={handleTheme} type="checkbox" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
                             <svg className="col-start-1 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
