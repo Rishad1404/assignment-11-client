@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { CgProfile } from "react-icons/cg";
 import { Tooltip } from 'react-tooltip';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -27,11 +27,11 @@ const Navbar = () => {
     const handleLogout = () => {
         logOut()
             .then(() => {
-                toast.success('Logged Out');
+                // toast.success('Logged Out');
                 Navigate(location.state = '/login');
             })
             .catch(() => {
-                toast.error("Logout failed");
+                toast.success("Logged Out");
             });
     }
 
@@ -78,12 +78,12 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                             {user && user.photoURL ? (
-                                    <img type="button" className="w-full h-full object-cover" src={user.photoURL} alt="Profile" />
+                                    <img type="button" className="w-full h-full object-cover" src={user?.photoURL} referrerPolicy='no-referrer' alt="Profile" />
                                 ) : (
                                     <CgProfile className="lg:w-full lg:h-full object-cover" />
                                 )}
                                 {user && user.displayName && (
-                                    <Tooltip anchorSelect="#my-anchor-element-id" place="top" content={user.displayName} />
+                                    <Tooltip anchorSelect="#my-anchor-element-id" place="bottom" content={user?.displayName} />
                                 )}
                             </div>
                         </div>
@@ -94,8 +94,6 @@ const Navbar = () => {
                             }
 
                         </ul>
-                        <Toaster position="top-right"
-                                reverseOrder={false} />
                     </div>
                     }
                 </div>

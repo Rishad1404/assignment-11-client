@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import logo from '/logo.png'
-import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 
 const Login = () => {
     const { signIn, googleLogin } = useContext(AuthContext)
@@ -70,11 +70,11 @@ const Login = () => {
                                 />
                             </div>
 
-                            <p className='mt-3 text-xl text-center text-gray-600 '>
+                            <p className='mt-3 text-xl text-center dark:text-blue '>
                                 Welcome back!
                             </p>
 
-                            <div className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
+                            <div className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 bg-base-100 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
                                 <div className='px-4 py-2'>
                                     <svg className='w-6 h-6' viewBox='0 0 40 40'>
                                         <path
@@ -176,7 +176,6 @@ const Login = () => {
                         </div>
                         
                     </div>
-                    <Toaster position="top-right" reverseOrder={false} />
                 </div>
                 
             </div>

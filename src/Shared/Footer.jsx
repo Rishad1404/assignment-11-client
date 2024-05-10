@@ -1,8 +1,8 @@
 import logo from '/logo.png'
 const Footer = () => {
     return (
-        <div>
-            <footer className="footer p-10 bg-base-200 text-base-content">
+        <div className='bg-base-200'>
+            <footer className="footer p-10 bg-base-200 text-base-content container mx-auto">
                 <aside>
                     <img src={logo} className='w-20 lg:w-44' alt="" />
                     <p>StudyMate Education HUB<br />Providing benefits to thousands of students</p>
