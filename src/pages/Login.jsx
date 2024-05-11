@@ -4,7 +4,6 @@ import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 
 const Login = () => {
@@ -48,9 +47,6 @@ const Login = () => {
             <Navbar></Navbar>
 
             <div className="container mx-auto mb-20 my-20">
-                <Helmet>
-                    <title>Login </title>
-                </Helmet>
 
                 <div className='flex justify-center items-center'>
                     <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-base-200 rounded-lg shadow-lg  lg:max-w-4xl'>

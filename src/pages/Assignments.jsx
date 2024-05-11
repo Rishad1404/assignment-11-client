@@ -13,7 +13,7 @@ const Assignments = () => {
     const [filterCriteria, setFilterCriteria] = useState("");
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/myAssignment/${user?.email}`)
+        fetch(`${import.meta.env.VITE_API_URL}/assignments`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -35,7 +35,7 @@ const Assignments = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
-            if (result.isConfirmed) {
+            if (result.isConfirmed && user) {
 
                 fetch(`${import.meta.env.VITE_API_URL}/myAssignments/${_id}`, {
                     method: "DELETE",
@@ -74,9 +74,9 @@ const Assignments = () => {
                 >
                     <CiFilter />
                     <option value="">Filter by difficulty</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
                 </select>
             </div>
             <div className="container mx-auto my-10">
@@ -95,12 +95,12 @@ const Assignments = () => {
                                 </div>
                                 <div className="flex gap-5 justify-center">
                                     <Link to={`/updateAssignment/${item._id}`}>
-                                        <button type="button" className="w-full p-3 font-semibold tracking-wide rounded-md dark:bg-[#0097B2] dark:text-gray-50 flex items-center gap-2 justify-center">
-                                            <GrUpdate/> Update
+                                        <button type="button" className="w-full p-3 font-semibold tracking-wide rounded-md dark:bg-blue-400 dark:text-gray-50 flex items-center gap-2 justify-center">
+                                            <GrUpdate /> Update
                                         </button>
                                     </Link>
-                                    <button onClick={() => handleDelete(item._id)} type="button" className=" p-3 font-semibold tracking-wide rounded-md dark:bg-[#0097B2] dark:text-gray-50 flex items-center gap-2 justify-center"><MdDeleteOutline /> Delete</button>
-                                    <Link to={`/assignments/${item._id}`}><button type="button" className=" p-3 font-semibold tracking-wide rounded-md dark:bg-[#0097B2] dark:text-gray-50 flex items-center gap-2 justify-center">View Assignment</button></Link>
+                                    <button onClick={() => handleDelete(item._id)} type="button" className=" p-3 font-semibold tracking-wide rounded-md dark:bg-blue-400 dark:text-gray-50 flex items-center gap-2 justify-center"><MdDeleteOutline /> Delete</button>
+                                    <Link to={`/assignments/${item._id}`}><button type="button" className=" p-3 font-semibold tracking-wide rounded-md dark:bg-blue-400 dark:text-gray-50 flex items-center gap-2 justify-center">View Assignment</button></Link>
                                 </div>
                             </div>
                         </div>
