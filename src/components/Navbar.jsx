@@ -37,20 +37,23 @@ const Navbar = () => {
 
     const navLinks = (
         <>
-            <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-lg border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/'>Home</NavLink></li>
-            <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-lg border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/assignments'>Assignments</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'text-blue-400 border rounded-lg border-blue-400 font-ubuntu text-lg font-bold' : 'text-lg font-ubuntu font-bold'} to='/'>Home</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'text-blue-400 border rounded-lg border-blue-400 font-ubuntu text-lg font-bold' : 'text-lg font-ubuntu font-bold'} to='/assignments'>Assignments</NavLink></li>
             {
                 !user &&
-                <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-lg border-[#0097B2] font-ubuntu text-xl font-bold' : 'text-xl font-ubuntu font-bold'} to='/login'>Login</NavLink></li>              
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-400 border rounded-lg border-blue-400 font-ubuntu text-lg font-bold' : 'text-lg font-ubuntu font-bold'} to='/login'>Login</NavLink></li>              
             }
             {
-                !user && <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-lg border-[#0097B2] font-ubuntu text-xl font-bold' : 'text-xl font-ubuntu font-bold'} to='/register'>Register</NavLink></li>
+                !user && <li><NavLink className={({ isActive }) => isActive ? 'text-blue-400 border rounded-lg border-blue-400 font-ubuntu text-lg font-bold' : 'text-lg font-ubuntu font-bold'} to='/register'>Register</NavLink></li>
             }
             {
-                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-log border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/createAssignments'>Create Assignments</NavLink></li> : null
+                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-blue-400 border rounded-log border-blue-400 font-ubuntu text-lg font-bold' : 'text-lg font-ubuntu font-bold'} to='/createAssignments'>Create Assignments</NavLink></li> : null
             }
             {
-                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-[#0097B2] border rounded-log border-[#0097B2] font-ubuntu text-lg font-bold' : 'text-xl font-ubuntu font-bold'} to='/myItems'>Pending Assignments</NavLink></li> : null
+                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-blue-400 border rounded-log border-blue-400 font-ubuntu text-lg font-bold' : 'text-lg font-ubuntu font-bold'} to='/pending'>Pending Assignments</NavLink></li> : null
+            }
+            {
+                user ? <li><NavLink className={({ isActive }) => isActive ? 'text-blue-400 border rounded-log border-blue-400 font-ubuntu text-lg font-bold' : 'text-lg font-ubuntu font-bold'} to='/submitted'>Submitted Assignments</NavLink></li> : null
             }
         </>
     )
