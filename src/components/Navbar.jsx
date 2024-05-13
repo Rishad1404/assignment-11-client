@@ -92,7 +92,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            {navLinks}
+                            <div className='md:hidden lg:hidden'>{navLinks}</div>
                             {
                                 <li><button onClick={handleLogout} className="text-xl font-bold">Logout</button></li> 
                             }

@@ -1,13 +1,14 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
-import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const AssignmentDetails = () => {
     const {user}=useContext(AuthContext)
     const { id } = useParams()
+    const navigate=useNavigate()
     const [assignments, setAssignments] = useState([])
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/singleAssignment/${id}`)
@@ -31,15 +32,11 @@ const AssignmentDetails = () => {
 
         const submitData={assignmentId,email,title,note,pdf,mark,status}
         try{
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Submitted Successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
+            toast.success("Submitted Successfully")
             const {data}=await axios.post(`${import.meta.env.VITE_API_URL}/submit`,submitData)
             console.log(data)
+            navigate('/submitted')
+            
         }
         catch(err){
             console.log(err)

@@ -2,9 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const PendingAssignment = () => {
     const { user } = useContext(AuthContext);
+    const navigate=useNavigate()
     const [assignments, setAssignments] = useState([]);
     useEffect(() => {
         const getData = async () => {
@@ -13,6 +16,32 @@ const PendingAssignment = () => {
         }
         getData()
     }, [user])
+
+
+    const handleSubmitMark = (e,id) => {
+    e.preventDefault();
+    const form = e.target;
+    const status = 'Completed';
+    const givenMark = form.givenMark.value;
+    const feedback = form.feedback.value;
+
+    const updatedInfo = { status, givenMark, feedback };
+
+    fetch(`${import.meta.env.VITE_API_URL}/confirmed/${id}`, {
+        method: "PUT",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(updatedInfo)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data?.modifiedCount > 0) {
+            toast.success("Mark Given Successfully")
+            navigate('/submitted')
+        } else if (data?.modifiedCount === 0) {
+            toast.error('Unsuccessful Operation')
+        }
+    })
+}
     return (
         <div>
             <Navbar></Navbar>
@@ -24,7 +53,8 @@ const PendingAssignment = () => {
                                 <th>Name</th>
                                 <th>Title</th>
                                 <th>Assignment Marks</th>
-                                <th>Give Mark</th>
+                                <th>Status</th>
+                                <th>Marking</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,13 +63,25 @@ const PendingAssignment = () => {
                                     <td>{user.displayName}</td>
                                     <td>{assignment.title}</td>
                                     <td>{assignment.mark}</td>
-                                    <td><button onClick={() => document.getElementById(`my_modal_${idx}`).showModal()} className="btn bg-blue-300 text-blue-700 font-ubuntu font-bold">Give Mark</button>
+                                    <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                        <div className="flex items-center gap-x-2">
+                                            <p 
+                                            className={`px-3 py-1 rounded-full  ${assignment.status==='Pending' && 'text-yellow-600 bg-yellow-100'}
+                                                                                ${assignment.status==='Completed' && 'text-green-500 bg-green-100'} 
+                                            `}  
+                                            >
+                                                {assignment.status}
+                                            </p>
+                                        </div>
+                                       
+                                    </td>
+                                    <td><button onClick={() => document.getElementById(`my_modal_${idx}`).showModal()} className="px-4 py-1 rounded-xl bg-blue-500 text-blue-100 font-ubuntu font-bold">Give Mark</button>
                                         <dialog id={`my_modal_${idx}`} className="modal modal-bottom sm:modal-middle">
                                             <div className="modal-box">
                                                 <section className="max-w-4xl p-6 mx-auto rounded-md shadow-m">
                                                     <h2 className="text-xl font-bold capitalize text-center">Give Mark</h2>
 
-                                                    <form>
+                                                    <form onSubmit={(e) => handleSubmitMark(e, assignment._id)}>
                                                         <div className="grid grid-cols-1 gap-6 mt-4">
                                                         <div>
                                                                 <label htmlFor="">PDF Link</label>

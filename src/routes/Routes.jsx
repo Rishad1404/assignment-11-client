@@ -10,6 +10,7 @@ import AssignmentDetails from "../pages/AssignmentDetails";
 import PendingAssignment from "../pages/PendingAssignment";
 import Error from "../components/ErrorPage/Error";
 import SubmittedAssignment from "../pages/SubmittedAssignment";
+import PrivateRoute from "./PrivateRoute";
 
 const router=createBrowserRouter([
     {
@@ -39,11 +40,11 @@ const router=createBrowserRouter([
             },
             {
                 path:'/updateAssignment/:id',
-                element:<UpdateAssignments></UpdateAssignments>
+                element:<PrivateRoute><UpdateAssignments></UpdateAssignments></PrivateRoute>
             },
             {
                 path:'/submitted',
-                element:<SubmittedAssignment></SubmittedAssignment>
+                element:<PrivateRoute><SubmittedAssignment></SubmittedAssignment></PrivateRoute>
             },
             {
                 path: '/assignments/:id',
@@ -52,7 +53,7 @@ const router=createBrowserRouter([
             },
             {
                 path:'/pending',
-                element:<PendingAssignment></PendingAssignment>
+                element:<PrivateRoute><PendingAssignment></PendingAssignment></PrivateRoute>
             }
         ]
     },

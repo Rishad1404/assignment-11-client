@@ -16,7 +16,10 @@ const SubmittedAssignment = () => {
     return (
         <div>
             <Navbar />
-            <div className="container mx-auto my-20 min-h-[calc(100vh-510px)] rounded-lg bg-base-200">
+            
+            <div className="container mx-auto my-20 min-h-[calc(100vh-510px)] ">
+            <h2 className="text-center text-4xl font-bold mb-10">My Submitted Assignment</h2>
+            <div className="rounded-lg bg-base-200">
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         <thead className="text-lg text-blue-400 ">
@@ -32,17 +35,27 @@ const SubmittedAssignment = () => {
                             {assignments.map(assignment => (
                                 <tr key={assignment._id}>
                                     <td>{assignment.title}</td>
-                                    <td>
-                                        <span className="px-2 py-1 font-normal rounded-full text-emerald-500 bg-emerald-100/60">{assignment.status}</span>
+                                    <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                        <div className="flex items-center gap-x-2">
+                                            <p 
+                                            className={`px-3 py-1 rounded-full  ${assignment.status==='Pending' && 'text-yellow-600 bg-yellow-100'}
+                                                                                ${assignment.status==='Completed' && 'text-green-600 bg-green-100'} 
+                                            `}  
+                                            >
+                                                {assignment.status}
+                                            </p>
+                                        </div>
+                                       
                                     </td>
                                     <td>{assignment.mark}</td>
-                                    <td>Not given yet</td>
-                                    <td>Not given yet</td>
+                                    <td>{assignment.givenMark ? assignment.givenMark : "Not Given Yet"} </td>
+                                    <td>{assignment.feedback ? assignment.feedback : "Not Given Yet"}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
+            </div>
             </div>
         </div>
     );

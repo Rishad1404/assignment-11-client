@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import logo from '/logo.png'
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -7,9 +7,16 @@ import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
 
 const Login = () => {
-    const { signIn, googleLogin } = useContext(AuthContext)
+    const { signIn, googleLogin,user,loading } = useContext(AuthContext)
     const navigate = useNavigate();
     const [showPass, setShowPass] = useState(false)
+
+    useEffect(()=>{
+        if(user){
+            navigate('/')
+        }
+
+    },[navigate,user])
 
     const handleLogin = e => {
         e.preventDefault();
@@ -42,6 +49,7 @@ const Login = () => {
                 toast.error("Login Unsuccessful")
             })
     }
+    if(user||loading) return
     return (
         <div>
             <Navbar></Navbar>
