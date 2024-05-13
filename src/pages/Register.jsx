@@ -24,18 +24,18 @@ const Register = () => {
         const password = form.password.value
         console.log({email,name,photo,password})
 
-        // if (password.length < 6) {
-        //     toast.error('Your Password should be 6 characters or longer')
-        //     return
-        // }
-        // else if (!/[A-Z]/.test(password)) {
-        //     toast.error('Your password should have an Uppercase character')
-        //     return
-        // }
-        // else if (!/[a-z]/.test(password)) {
-        //     toast.error('Your password should have an Lowercase character')
-        //     return
-        // }
+        if (password.length < 6) {
+            toast.error('Your Password should be 6 characters or longer')
+            return
+        }
+        else if (!/[A-Z]/.test(password)) {
+            toast.error('Your password should have an Uppercase character')
+            return
+        }
+        else if (!/[a-z]/.test(password)) {
+            toast.error('Your password should have an Lowercase character')
+            return
+        }
 
         // Create User
         try{

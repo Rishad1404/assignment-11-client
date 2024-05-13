@@ -66,7 +66,7 @@ const Assignments = () => {
         <div>
             <Navbar></Navbar>
             <div className="bg-base-200 py-5 my-5 text-center">
-                <h1 className="text-6xl font-serif text-center my-10">All Assignments</h1>
+                <h1 className="text-2xl lg:text-6xl font-serif text-center my-3 lg:my-10">All Assignments</h1>
                 <select
                     name=""
                     id=""
@@ -95,9 +95,9 @@ const Assignments = () => {
                                     <h2 className="text-lg font-bold">Difficulty: {item.difficulty}</h2>
                                     <h2 className="font-bold text-lg">Mark: {item.mark}</h2>
                                 </div>
-                                <div className="flex gap-5 justify-center">
+                                <div className="lg:flex items-center space-y-1 gap-5 justify-center">
                                     <Link to={`/updateAssignment/${item._id}`}>
-                                        <button type="button" className="w-full p-3 font-semibold tracking-wide rounded-md dark:bg-blue-400 dark:text-gray-50 flex items-center gap-2 justify-center">
+                                        <button type="button" className=" p-3 font-semibold tracking-wide rounded-md dark:bg-blue-400 dark:text-gray-50 flex items-center gap-2 justify-center">
                                             <GrUpdate /> Update
                                         </button>
                                     </Link>
