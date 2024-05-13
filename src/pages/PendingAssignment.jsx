@@ -28,6 +28,7 @@ const PendingAssignment = () => {
         const updatedInfo = { status, givenMark, feedback };
 
         fetch(`${import.meta.env.VITE_API_URL}/confirmed/${id}`, {
+            credentials:'include',
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(updatedInfo)

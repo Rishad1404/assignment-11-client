@@ -8,7 +8,7 @@ const SubmittedAssignment = () => {
     const [assignments, setAssignments] = useState([]);
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/submitAssignment/${user?.email}`)
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/submitAssignment/${user?.email}`,{withCredentials:true})
             setAssignments(data)
         }
         getData()
