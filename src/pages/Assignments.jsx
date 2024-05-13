@@ -13,7 +13,7 @@ const Assignments = () => {
     const [filterCriteria, setFilterCriteria] = useState("");
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/assignments`)
+        fetch(`${import.meta.env.VITE_API_URL}/assignments`,{credentials:'include'})
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -60,6 +60,8 @@ const Assignments = () => {
         ? items.filter(item => item.difficulty == filterCriteria)
         : items;
 
+        const itemsToRender = Array.isArray(filteredItems) ? filteredItems : [];
+
     return (
         <div>
             <Navbar></Navbar>
@@ -81,7 +83,7 @@ const Assignments = () => {
             </div>
             <div className="container mx-auto my-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {filteredItems.map(item => (
+                    {itemsToRender.map(item => (
                         <div key={item._id} className="rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
                             <img src={item.thumbnail} alt="" className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500" />
                             <div className="flex flex-col justify-between p-6 space-y-8">

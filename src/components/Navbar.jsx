@@ -1,4 +1,4 @@
-import { Link, NavLink, Navigate } from 'react-router-dom'
+import { Link, NavLink} from 'react-router-dom'
 import logo from '/logo.png'
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
@@ -28,7 +28,7 @@ const Navbar = () => {
         logOut()
             .then(() => {
                 // toast.success('Logged Out');
-                Navigate(location.state = '/login');
+                
             })
             .catch(() => {
                 toast.success("Logged Out");
@@ -93,7 +93,7 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <div className='md:hidden lg:hidden'>{navLinks}</div>
-                            {
+                            {  user &&
                                 <li><button onClick={handleLogout} className="text-xl font-bold">Logout</button></li> 
                             }
 

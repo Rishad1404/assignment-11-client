@@ -1,13 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { GoogleAuthProvider, signInWithPopup, GithubAuthProvider, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import axios from "axios";
 export const AuthContext=createContext(null)
 
 // Social Auth Providers
 const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({children}) => {
 const [user,setUser]=useState(null)
@@ -52,14 +52,30 @@ const logOut=()=>{
 const googleLogin=()=>{
     return signInWithPopup(auth,googleProvider)
 }
-// Github Login
-const githubLogin=()=>{
-    return signInWithPopup(auth,githubProvider)
-}
 useEffect(()=>{
     const unSubscribe= onAuthStateChanged(auth,currentUser=>{
+        const userEmail=currentUser?.email || user?.email;
+        const loggedUser={email:userEmail};
         setUser(currentUser);
+        console.log('current user',currentUser)
         setLoading(false)
+        // If user exists then issue a token
+        if(currentUser){
+            
+            axios.post(`${import.meta.env.VITE_API_URL}/jwt`, loggedUser,{withCredentials:true})
+            .then(res=>{
+                console.log("Token response",res.data)
+            })
+        }
+        else{
+            axios.post(`${import.meta.env.VITE_API_URL}/logout`,loggedUser,{
+                withCredentials:true,
+
+            })
+            .then(res=>{
+                console.log(res.data);
+            })
+        }
     });
     return()=>{
         unSubscribe();
@@ -74,7 +90,6 @@ const authInfo={
     signIn,
     logOut,
     googleLogin,
-    githubLogin,
     updateUserProfile,
     updateEmail
     
