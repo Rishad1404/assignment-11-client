@@ -27,7 +27,7 @@ const SubmittedAssignment = () => {
             <Navbar />
 
             <div className="container mx-auto my-20 min-h-[calc(100vh-510px)] ">
-                <h2 className="text-center text-4xl font-bold mb-10">My Submitted Assignment</h2>
+                <h2 className="text-center text-2xl lg:text-4xl font-bold mb-10">My Submitted Assignment</h2>
                 <div className="rounded-lg bg-base-200">
                     <div className="overflow-x-auto">
                         <table className="table w-full">

@@ -50,7 +50,7 @@ const CreateAssignments = () => {
 
                         <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
                             <div className="w-full">
-                                <h1 className="text-5xl font-bold text-center tracking-wider capitalize ">
+                                <h1 className="text-2xl lg:text-5xl font-bold text-center tracking-wider capitalize ">
                                     Add Assignment
                                 </h1>                         
 

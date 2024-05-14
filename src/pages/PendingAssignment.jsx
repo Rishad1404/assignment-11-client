@@ -53,7 +53,7 @@ const PendingAssignment = () => {
         <div>
             <Navbar></Navbar>
             <div className="container mx-auto my-20 min-h-[calc(100vh-510px)]">
-                <h2 className="text-center text-4xl font-bold mb-10">Pending Assignments</h2>
+                <h2 className="text-center text-2xl lg:text-4xl font-bold mb-10">Pending Assignments</h2>
                 <div className="rounded-lg bg-base-200">
                     <div className="overflow-x-auto">
                         <table className="table w-full rounded-lg">

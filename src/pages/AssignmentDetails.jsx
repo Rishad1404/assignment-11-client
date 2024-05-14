@@ -48,7 +48,7 @@ const AssignmentDetails = () => {
             <Navbar></Navbar>
             <div className="container lg:mx-auto my-10">
                 <div className="lg:flex gap-10 g:card-side bg-base-100 shadow-xl">
-                    <figure><img className="h-[200px] lg:h-[600px] w-full lg:w-[1000px]" src={assignments.thumbnail} alt="Album" /></figure>
+                    <figure><img className="h-[100px] lg:h-[600px] w-full lg:w-3/4" src={assignments.thumbnail} alt="Album" /></figure>
                     <div className="mb-2 space-y-5 space-x-2 lg:space-y-14">
                         <h2 className="text-3xl mx-2 lg:text-5xl font-bold my-5">{assignments.title}</h2>
 
