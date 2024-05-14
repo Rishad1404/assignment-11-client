@@ -49,7 +49,7 @@ const UpdateAssignments = () => {
                         title: 'Success!',
                         text: 'Assignment updated Successfully',
                         icon: 'success',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'Okay'
                     })
                     e.target.reset();
                 }

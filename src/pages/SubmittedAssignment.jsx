@@ -7,10 +7,10 @@ import axios from "axios";
 const SubmittedAssignment = () => {
     const { user } = useContext(AuthContext);
     const [assignments, setAssignments] = useState([]);
+
     useEffect(() => {
         const getData = async () => {
             try {
-                console.log(`Fetching data for ${user?.email}`);
                 const { data } = await axios(`${import.meta.env.VITE_API_URL}/submitAssignment/${user?.email}`, { withCredentials: true });
                 console.log('Data fetched:', data);
                 setAssignments(data);
