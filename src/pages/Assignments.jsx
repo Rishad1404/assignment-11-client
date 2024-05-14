@@ -13,7 +13,7 @@ const Assignments = () => {
     const [filterCriteria, setFilterCriteria] = useState("");
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/assignments`,{credentials:'include'})
+        fetch(`${import.meta.env.VITE_API_URL}/assignments`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)

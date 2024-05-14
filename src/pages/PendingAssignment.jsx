@@ -11,24 +11,30 @@ const PendingAssignment = () => {
     const [assignments, setAssignments] = useState([]);
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/submitAssignment/${user?.email}`)
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/submitAssignment/${user?.email}`,{withCredentials:true})
             setAssignments(data)
         }
         getData()
     }, [user])
 
 
-    const handleSubmitMark = (e, id) => {
+    const handleSubmitMark = (e, assignment) => {
         e.preventDefault();
         const form = e.target;
         const status = 'Completed';
-        const givenMark = form.givenMark.value;
+        const givenMark = parseFloat(form.givenMark.value);
         const feedback = form.feedback.value;
+
+        // Validate that given mark is not greater than assignment mark
+        if (givenMark > assignment.mark) {
+            toast.error(`You cannot give mark more than ${assignment.mark}`);
+            return;
+        }
 
         const updatedInfo = { status, givenMark, feedback };
 
-        fetch(`${import.meta.env.VITE_API_URL}/confirmed/${id}`, {
-            credentials:'include',
+        fetch(`${import.meta.env.VITE_API_URL}/confirmed/${assignment._id}`, {
+            credentials: 'include',
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(updatedInfo)
@@ -36,18 +42,18 @@ const PendingAssignment = () => {
             .then(res => res.json())
             .then(data => {
                 if (data?.modifiedCount > 0) {
-                    toast.success("Mark Given Successfully")
-                    navigate('/submitted')
+                    toast.success("Mark Given Successfully");
+                    navigate('/submitted');
                 } else if (data?.modifiedCount === 0) {
-                    toast.error('Unsuccessful Operation')
+                    toast.error('Unsuccessful Operation');
                 }
-            })
-    }
+            });
+    };
     return (
         <div>
             <Navbar></Navbar>
             <div className="container mx-auto my-20 min-h-[calc(100vh-510px)]">
-                <h2 className="text-center text-4xl font-bold mb-10">My Submitted Assignment</h2>
+                <h2 className="text-center text-4xl font-bold mb-10">Pending Assignments</h2>
                 <div className="rounded-lg bg-base-200">
                     <div className="overflow-x-auto">
                         <table className="table w-full rounded-lg">
@@ -84,7 +90,7 @@ const PendingAssignment = () => {
                                                     <section className="max-w-4xl p-6 mx-auto rounded-md shadow-m">
                                                         <h2 className="text-xl font-bold capitalize text-center">Give Mark</h2>
 
-                                                        <form onSubmit={(e) => handleSubmitMark(e, assignment._id)}>
+                                                        <form onSubmit={(e) => handleSubmitMark(e, assignment)}>
                                                             <div className="grid grid-cols-1 gap-6 mt-4">
                                                                 <div>
                                                                     <label htmlFor="">PDF Link</label>

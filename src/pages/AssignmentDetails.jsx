@@ -11,7 +11,7 @@ const AssignmentDetails = () => {
     const navigate=useNavigate()
     const [assignments, setAssignments] = useState([])
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/singleAssignment/${id}`)
+        fetch(`${import.meta.env.VITE_API_URL}/singleAssignment/${id}`,)
             .then(res => res.json())
             .then(data => {
                 setAssignments(data)
