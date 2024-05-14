@@ -1,8 +1,11 @@
-# React + Vite
+Name Of the website: Lumina Art and Craft 
+Live Site URL: https://study-mate-53876.firebaseapp.com 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Assignment_ID: assignment_category_0001
+ 
+Features and Characteristics: o Assignment management: Use can manage and track their assignment. o  Assignment Submission and Grading: User will complete and get marks for assignments o Sign-Up and Sign-In: Enable users to register and log in securely o Access Control: Control access to features based on user authentication. o Install SDK: Include Firebase JavaScript SDK in your website. o Vercel Deploy: We can deploy our server site in Vercel and use the API in our Client 
 
-Currently, two official plugins are available:
+Category name: Assignment management application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
