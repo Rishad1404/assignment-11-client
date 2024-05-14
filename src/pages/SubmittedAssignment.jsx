@@ -63,8 +63,8 @@ const SubmittedAssignment = () => {
                                             <dialog id={`my_modal_${idx}`} className="modal modal-bottom sm:modal-middle">
                                                 <div className="modal-box">
                                                     <section className="max-w-4xl p-6 mx-auto rounded-md shadow-m">
-                                                        {/* <iframe src={assignment.pdf}></iframe> */}
-                                                        <img src={assignment.pdf} alt="" />
+                                                        <iframe src={assignment.pdf} width="100%" height="700px"></iframe>
+                                                        {/* <img src={assignment.pdf} alt="" /> */}
                                                     </section>
                                                     <div className="modal-action">
                                                         <form method="dialog">
