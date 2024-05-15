@@ -86,10 +86,12 @@ const Assignments = () => {
                     {itemsToRender.map(item => (
                         <div key={item._id} className="rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
                             <img src={item.thumbnail} alt="" className="object-cover object-center w-full rounded-t-md lg:h-72 dark:bg-gray-500" />
+                            
                             <div className="flex flex-col justify-between p-6 space-y-8">
                                 <div className="space-y-2 text-center">
                                     <h2 className="text-3xl font-bold tracking-wide">{item.title}</h2>
                                     <p className="text-md">{item.description}</p>
+                                    <p className="px-2 text-center font-bold">Due Date: {item.due}</p>
                                 </div>
                                 <div className="flex justify-around">
                                     <h2 className="text-lg font-bold">Difficulty: {item.difficulty}</h2>

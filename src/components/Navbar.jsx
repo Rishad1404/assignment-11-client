@@ -27,11 +27,11 @@ const Navbar = () => {
     const handleLogout = () => {
         logOut()
             .then(() => {
-                // toast.success('Logged Out');
+                toast.success('Logged Out');
                 
             })
             .catch(() => {
-                toast.success("Logged Out");
+                toast.error("Unsuccessful");
             });
     }
 
