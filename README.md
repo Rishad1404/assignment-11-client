@@ -1,4 +1,4 @@
-Name Of the website: Lumina Art and Craft 
+Name Of the website: Study Mate
 Live Site URL: https://study-mate-53876.firebaseapp.com 
 
 Assignment_ID: assignment_category_0001
